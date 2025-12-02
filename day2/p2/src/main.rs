@@ -1,19 +1,18 @@
 use std::fs;
 
 fn invalid(num : i64) -> bool {
-    let mut ret : bool = false;
     let n_str = num.to_string();
     for i in (1..n_str.len()).filter(|a| n_str.len() % a == 0) {
-        let aa = n_str[0..i].to_string();
+        let aa = &n_str[0..i];
         let mut result : String = String::new();
         for _ in 0..n_str.len()/i {
-            result.push_str(&aa);
+            result.push_str(aa);
         }
         if result == n_str {
-            ret = true;
+            return true;
         }
     }
-    ret
+    false
 }
 
 fn main() {

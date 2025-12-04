@@ -1,4 +1,5 @@
 use std::fs;
+use std::{thread, time};
 
 const LENGTH : usize = 138;
 const WIDTH : usize = 138;
@@ -59,11 +60,14 @@ fn main() {
         prev = curr.clone();
         curr = change.clone();
         change = vec![[0; LENGTH]; WIDTH];
+
+        print!("\x1B[2J\x1B[1;1H");
         
         for i in 0..curr.len() {
             let a : &str = str::from_utf8(&curr[i]).unwrap();
             println!("{}",a);
         }
+        thread::sleep(time::Duration::from_millis(100));
         println!("");
     } 
     println!("the result is {}", result);

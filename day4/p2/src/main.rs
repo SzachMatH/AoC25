@@ -18,6 +18,13 @@ fn main() {
     (-1,0), (1,0), //WE DO NOT CHECK (0,0) position
     (0,1), (-1,1), (1,1)];
 
+    //for i in itertools::iproduct(-1..1, -1..1) {
+    //    if i != (0,0) {
+    //        //logic
+    //    }
+    //}
+}
+
     let okay = |y : i32,x : i32, arr : &Vec<[u8; LENGTH]>| { 
         if y<0 || x<0 || y>=arr.len() as i32 || x>=LENGTH as i32 {
             return true;

@@ -89,6 +89,7 @@ impl SegTree {
                 r-=1;
             }
             r/=2;
+            //haha
             l/=2;
         }//I'm a little rusty in implementing segtrees, so this might be wrong!
     }

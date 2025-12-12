@@ -1,3 +1,4 @@
+#![allow(dead_code, reason = "I coded another solution, but it does not work and I want it to still be here")]
 use std::fs;
 use std::str::FromStr;
 use std::collections::{HashMap,HashSet};
@@ -6,7 +7,7 @@ const MAX_TREE : usize = 16;
 const INF : i64 = 1_000000_000000_00000;
 
 fn read_input() -> (Vec<(i64,i64)>, Vec<i64>) {
-    let input = fs::read_to_string("input_test").unwrap();
+    let input = fs::read_to_string("input").unwrap();
     //the method you're about to see is bad for large data
 
     let segments : Vec<(i64, i64)> = input.trim()
@@ -109,25 +110,24 @@ fn main() {
     let (segments, numbers) = read_input();
     let map = prepare_segments(&segments);
 
-    let mut keys : Vec<i64> = map.keys().copied().collect();
-    keys.sort();
-    let segtree = prepare_segment_tree(&segments, &map);
+    //let mut keys : Vec<i64> = map.keys().copied().collect();
+    //keys.sort();
+    //let segtree = prepare_segment_tree(&segments, &map);
 
-    //for seg in segments {
-    //    println!("{}-{}",seg.0,seg.1);
+    //let mut result = 0;
+    //for num in numbers {
+    //    let i = bin_search(num, &keys);
+    //    result += segtree.query(i) as i32;
     //}
-    //for a in map {
-    //    println!("{} {}",a.0, a.1);
-    //}
-    //for i in 0..keys.len() {
-    //    println!("i={} ret={}",i,segtree.query(i));
-    //}
-    let mut result = 0;
-    for num in numbers {
-        println!("checking {}",num);
-        let i = bin_search(num, &keys);
-        result += segtree.query(i) as i32;
-        println!("res = {}",result);
+
+    let mut res = 0;
+    for num in &numbers {
+        for seg in &segments {
+            if *num >= seg.0 && *num <= seg.1 {
+                res += 1;
+                break;
+            }
+        }
     }
-    println!("The result is {}",result);
+    println!("solution is {}",res);
 } 
